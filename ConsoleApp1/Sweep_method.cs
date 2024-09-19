@@ -37,7 +37,7 @@ namespace Methods
                     throw new Exception($"Невыполенено условие: |B[i]| >= |ai| + |ci|,  i = {i}");
                 }
             }
-            if (Math.Abs(matrix.matrix[n-1][n-1]) < Math.Abs(matrix.matrix[n-1][n-2]))
+            if (Math.Abs(matrix.matrix[n - 1][n - 1]) < Math.Abs(matrix.matrix[n - 1][n - 2]))
             {
                 throw new Exception($"Невыполенено условие: |B[i]| >=|ai|,  i = {n}");
             }
@@ -61,7 +61,7 @@ namespace Methods
                 p[i] = -ci / denom;
                 q[i] = (d[i] - ai * q[i - 1]) / denom;
             }
-            
+
 
             int last = n - 1;
             double alast = matrix.matrix[last][last - 1];
@@ -95,8 +95,11 @@ namespace Methods
         }
         public static bool IsTridiagonal(Matrix m)
         {
-            int n = m.matrix.Count;
-
+            int n = m.size;
+            if (n < 2)
+            {
+                throw new Exception($"Размерность > 1");
+            }
             for (int i = 0; i < n; i++)
             {
                 if (m.matrix[i][i] == 0)
